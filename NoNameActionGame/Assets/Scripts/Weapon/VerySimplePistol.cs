@@ -41,7 +41,7 @@ public class VerySimplePistol : MonoBehaviour
 
 		Ray ray = new Ray(m_raycastSpot.position, m_raycastSpot.forward);
 
-        RaycastHit hit;
+		RaycastHit hit;
 
 		if (Physics.Raycast(ray, out hit, m_weaponRange))
 		{
