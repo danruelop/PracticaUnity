@@ -7,11 +7,11 @@ using UnityEngine;
 public class FPSCharacterController : MonoBehaviour
 {
     public  CharacterController m_controller;
-    private float               m_verticalVelocity;
-    private float               m_isGroundedTimer; 
-    private float               m_walkSpeed = 2.0f;
-    private float               m_jumpHeight = 1.0f;
-    private float               m_gravity = 9.81f;
+    public float               m_verticalVelocity;
+    private float               m_isGroundedTimer;
+    public float               m_walkSpeed = 2.0f;
+    public float               m_jumpHeight = 1.0f;
+    public float               m_gravity = 9.81f;
     private Vector2             m_playerCameraRotation = Vector2.zero;
     public  float               m_playerCameraRotationSpeed = 2.0f;
     public  float               m_playerCameraRotationXLimit = 45.0f;

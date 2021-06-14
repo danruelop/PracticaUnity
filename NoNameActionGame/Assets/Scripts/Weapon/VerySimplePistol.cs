@@ -54,5 +54,6 @@ public class VerySimplePistol : MonoBehaviour
 		}
 
 		GetComponent<AudioSource>().PlayOneShot(m_fireSound);
+	
 	}
 }
