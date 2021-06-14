@@ -4,27 +4,36 @@ using UnityEngine;
 
 public class VerySimplePistol : MonoBehaviour
 {
+	public int m_maxAmmo = 20;
+	private int m_ammo = 20;
+
+	private float m_timeBetweenShots = 0.2f;
+	private float m_shootTimer = 0.0f;
+
 	public  Transform m_raycastSpot;					
 	public  float     m_damage        = 80.0f;				
 	public  float     m_forceToApply  = 20.0f;				
 	public  float     m_weaponRange   = 9999.0f;						
 	public  Texture2D m_crosshairTexture;					
-    public  AudioClip m_fireSound;							
-    private bool      m_canShot = true;
+    public  AudioClip m_fireSound;
+	public AudioClip m_reloadSound;
+    //private bool      m_canShot = true;
+	private Animator  m_animator;
+
+
+	private void Start()
+    {
+		m_animator = gameObject.GetComponent<Animator>();
+    }
 
 	private void Update()
 	{
-        if (m_canShot)
-		{
-			if (Input.GetButton("Fire1"))
-			{
-				Shot();
-			}
+		m_shootTimer += Time.deltaTime;
+
+		if(m_ammo <= 0 || Input.GetButtonUp("Fire1"))
+        {
+			BackToIdle();
 		}
-		else if (Input.GetButtonUp("Fire1"))
-        { 
-			m_canShot = true;
-        }
 	}
 
 	private void OnGUI()
@@ -35,25 +44,45 @@ public class VerySimplePistol : MonoBehaviour
 	}
 
 
-	private void Shot()
+	public void Shot()
 	{
-		m_canShot = false;
+		if(m_ammo > 0 && m_shootTimer >= m_timeBetweenShots)
+        {
+			m_animator.Play("Fire");
 
-		Ray ray = new Ray(m_raycastSpot.position, m_raycastSpot.forward);
+			Ray ray = new Ray(m_raycastSpot.position, m_raycastSpot.forward);
 
-		RaycastHit hit;
+			RaycastHit hit;
 
-		if (Physics.Raycast(ray, out hit, m_weaponRange))
-		{
-            Debug.Log("Hit " + hit.transform.name);
-            if (hit.rigidbody)
+			if (Physics.Raycast(ray, out hit, m_weaponRange))
 			{
-				hit.rigidbody.AddForce(ray.direction * m_forceToApply);
-                Debug.Log("Hit");
+				Debug.Log("Hit " + hit.transform.name);
+				if (hit.rigidbody)
+				{
+					hit.rigidbody.AddForce(ray.direction * m_forceToApply);
+					Debug.Log("Hit");
+				}
 			}
-		}
 
-		GetComponent<AudioSource>().PlayOneShot(m_fireSound);
-	
+			GetComponent<AudioSource>().PlayOneShot(m_fireSound);
+			m_ammo--;
+			m_shootTimer = 0.0f;
+		}
+		
+	}
+
+	public void Reload()
+    {
+		if(m_ammo < m_maxAmmo)
+        {
+			m_animator.Play("Reload");
+			m_ammo = m_maxAmmo;
+			GetComponent<AudioSource>().PlayOneShot(m_reloadSound);
+		}
+	}
+
+	void BackToIdle()
+    {
+		m_animator.SetTrigger("Idle");
 	}
 }
