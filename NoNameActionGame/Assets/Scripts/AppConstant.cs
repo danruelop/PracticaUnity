@@ -11,15 +11,15 @@ public class AppDevelopFlag
 public class AppPaths
 {
 	public static readonly string  	PERSISTENT_DATA      = Application.persistentDataPath;
-	public static readonly string	PATH_RESOURCE_SFX    = "SFX/";
-    public static readonly string	PATH_RESOURCE_MUSIC  = "Music/";
+	public static readonly string	PATH_RESOURCE_SFX    = "Sounds/MenuSfx/";
+    public static readonly string	PATH_RESOURCE_MUSIC  = "Sounds/Music/";
 }
 
 public class AppScenes
 {
 	public static readonly string 	MAIN_SCENE    = "Menu";
 	public static readonly string 	LOADING_SCENE = "Loading";
-	public static readonly string 	GAME_SCENE    = "DemoScene";
+	public static readonly string 	GAME_SCENE    = "Game";
 }
 
 public class AppPlayerPrefKeys
@@ -30,11 +30,9 @@ public class AppPlayerPrefKeys
 
 public class AppSounds
 {
-	public static readonly string	MAIN_TITLE_MUSIC = "GTA_theme";
+	public static readonly string	MAIN_TITLE_MUSIC = "MainTitle";
 	public static readonly string	GAME_MUSIC       = "Gameplay";
     public static readonly string	BUTTON_SFX       = "Click_Soft_01";
-	public static readonly string	FIRE_SFX		 = "pistol_shot";
-	public static readonly string	RELOAD_SFX		 = "pistol_reload";
 }
 
 

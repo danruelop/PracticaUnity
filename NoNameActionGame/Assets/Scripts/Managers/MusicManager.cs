@@ -131,7 +131,6 @@ public class MusicManager : PersistentSingleton<MusicManager>
 			m_backgroundMusic.Pause();
 	}
 
-
     private AudioSource  CreateAudioSource     (string name, bool isLoop)
     {
         GameObject temporaryAudioHost         = new GameObject(name);
