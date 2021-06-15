@@ -25,7 +25,7 @@ public class VerySimplePistol : MonoBehaviour
 
 	[Header("References")]
 	public Transform m_raycastSpot;
-	public Transform m_cameraRef;
+	public Camera m_cameraRef;
 
 	private void Start()
     {
@@ -61,7 +61,10 @@ public class VerySimplePistol : MonoBehaviour
 			m_animator.Play("Fire");
 			m_partycleSystem.Play();
 
-			Ray ray = new Ray(m_raycastSpot.position, m_cameraRef.forward);
+			Vector2 center = new Vector2((Screen.width / 2)-10, (Screen.height / 2)+10);
+
+
+			Ray ray = m_cameraRef.ScreenPointToRay(center);
 
 			RaycastHit hit;
 
