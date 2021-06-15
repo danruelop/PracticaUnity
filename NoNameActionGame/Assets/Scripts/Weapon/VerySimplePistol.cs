@@ -73,6 +73,7 @@ public class VerySimplePistol : MonoBehaviour
 				ParticleSystem t_partycleSystem=Instantiate(m_partycleSystem,hit.point,Quaternion.identity);
 				t_partycleSystem.Play();
 				Destroy(t_partycleSystem.gameObject,0.5f);
+				
 				/*
 				Debug.Log("Hit " + hit.transform.name);
 				if (hit.rigidbody)
