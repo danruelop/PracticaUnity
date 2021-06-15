@@ -37,7 +37,7 @@ public class MenuCanvasController : MonoBehaviour
             m_paused.SetActive(false);
             Time.timeScale = 1;
             isPaused = false;
-            player.GetComponent<FPSCharacterController>().enabled = true;
+           
             /*Locks Cursor*/
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -47,7 +47,6 @@ public class MenuCanvasController : MonoBehaviour
             m_paused.SetActive(true);
             Time.timeScale = 0;
             isPaused = true;
-            player.GetComponent<FPSCharacterController>().enabled = false;
             /*Locks Cursor*/
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
