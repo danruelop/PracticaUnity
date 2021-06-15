@@ -6,23 +6,26 @@ public class VerySimplePistol : MonoBehaviour
 {
 	public int m_maxAmmo = 20;
 	private int m_ammo = 20;
+	private Animator m_animator;
 
+	[Header("Timers")]
 	private float m_timeBetweenShots = 0.2f;
 	private float m_shootTimer = 0.0f;
 
-	public  Transform m_raycastSpot;					
+	[Header("Parameters")]
 	public  float     m_damage        = 80.0f;				
 	public  float     m_forceToApply  = 20.0f;				
 	public  float     m_weaponRange   = 9999.0f;						
-	public  Texture2D m_crosshairTexture;					
-    public  AudioClip m_fireSound;
+
+	[Header("VFX & SFX")]
+	public Texture2D m_crosshairTexture;
+	public AudioClip m_fireSound;
 	public AudioClip m_reloadSound;
 	public ParticleSystem m_partycleSystem;
-    //private bool      m_canShot = true;
-	private Animator  m_animator;
-	private int iidle=0;
-	
 
+	[Header("References")]
+	public Transform m_raycastSpot;
+	public Transform m_cameraRef;
 
 	private void Start()
     {
@@ -57,10 +60,8 @@ public class VerySimplePistol : MonoBehaviour
         {
 			m_animator.Play("Fire");
 			m_partycleSystem.Play();
-			
-			
 
-			Ray ray = new Ray(m_raycastSpot.position, m_raycastSpot.forward);
+			Ray ray = new Ray(m_raycastSpot.position, m_cameraRef.forward);
 
 			RaycastHit hit;
 
