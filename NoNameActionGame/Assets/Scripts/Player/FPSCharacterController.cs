@@ -10,11 +10,8 @@ public class FPSCharacterController : MonoBehaviour
     private Player m_owner;
 
     [Header("Player variables")]
-    private float m_verticalVelocity;
-    private float m_isGroundedTimer;
     public float m_walkSpeed = 2.0f;
     public float m_jumpHeight = 1.0f;
-    public float m_gravity = 9.81f;
 
     [Header("Camera")]
     public float m_playerCameraRotationSpeed = 4.0f;

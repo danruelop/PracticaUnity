@@ -7,25 +7,29 @@ public class Entity : MonoBehaviour
     public float m_maxHealth;
     public float m_health;
 
-    private CharacterController m_controller;
-    private Rigidbody m_rigidbody;
+    protected CharacterController m_controller;
 
     [Header("Boing")]
     private float m_verticalVelocity;
     private float m_isGroundedTimer;
-    public float m_gravity = 9.81f;
+    private float m_gravity = 9.81f;
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other != null)
+        if(tag == "Player")
         {
-            other.GetComponent<JumpPoint>().OnTriggerWithPlayer(this);
+            Debug.Log("Colision" + other.name);
+
+            JumpPoint jumpPoint = other.GetComponent<JumpPoint>();
+            if (jumpPoint != null)
+            {
+                jumpPoint.OnTriggerWithPlayer(this);
+            }
+            else
+            {
+                Debug.Log("JumpPoint is null");
+            }
         }
-        else
-        {
-            Debug.Log("Collider is null");
-        }
-       
     }
 
     void Awake()
@@ -35,45 +39,47 @@ public class Entity : MonoBehaviour
     }
     void Start()
     {
-        m_controller = gameObject.GetComponent<CharacterController>();
+        if(tag == "Player")
+        {
+            m_controller = gameObject.GetComponent<CharacterController>();
+        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        bool isInGround = m_controller.isGrounded;
-        if (isInGround)
+        if(tag == "Player")
         {
-            m_isGroundedTimer = 0.2f;
-        }
+            bool isInGround = m_controller.isGrounded;
+            if (isInGround)
+            {
+                m_isGroundedTimer = 0.2f;
+            }
 
-        if (m_isGroundedTimer > 0)
-        {
-            m_isGroundedTimer -= Time.deltaTime;
-        }
+            if (m_isGroundedTimer > 0)
+            {
+                m_isGroundedTimer -= Time.deltaTime;
+            }
 
-        if (isInGround && m_verticalVelocity < 0)
-        {
-            m_verticalVelocity = 0f;
-        }
+            if (isInGround && m_verticalVelocity < 0)
+            {
+                m_verticalVelocity = 0f;
+            }
 
-        m_verticalVelocity -= m_gravity * Time.deltaTime;
-        Vector3 tempMove = Vector3.zero;
-        tempMove.y = m_verticalVelocity;
+            m_verticalVelocity -= m_gravity * Time.deltaTime;
+            Vector3 tempMove = Vector3.zero;
+            tempMove.y = m_verticalVelocity;
 
-        if (m_controller != null)
-        {
             m_controller.Move(tempMove * Time.deltaTime);
-        }
-        
+        } 
     }
 
     public void Boing(float _boingStrength, bool _isSelfJump)
     {
-        Debug.Log("JUMP");
         if(_isSelfJump)
         {
-            if(m_isGroundedTimer > 0)
+            if (m_isGroundedTimer > 0)
             {
                 m_isGroundedTimer = 0;
                 m_verticalVelocity += Mathf.Sqrt(_boingStrength * 2 * m_gravity);
@@ -83,5 +89,6 @@ public class Entity : MonoBehaviour
         {
             m_verticalVelocity += Mathf.Sqrt(_boingStrength * 2 * m_gravity);
         }
+        
     }
 }

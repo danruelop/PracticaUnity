@@ -22,22 +22,23 @@ public class AshGonnaPatrol : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
         NavMeshAgent agent = animator.gameObject.GetComponent<NavMeshAgent>();
-        if (points.Length == 0)
-            return;
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+        if (agent.enabled)
         {
-            agent.destination = points[destPoint].position;
-            destPoint = (destPoint + 1) % points.Length;
-            animator.Play("walking");
+            if (points.Length == 0)
+                return;
+            if (!agent.pathPending && agent.remainingDistance < 0.5f)
+            {
+                agent.destination = points[destPoint].position;
+                destPoint = (destPoint + 1) % points.Length;
+                animator.Play("walking");
+            }
+            if (Vector3.Distance(animator.gameObject.transform.position, Player.transform.position) < HearingDistance)
+            {
+                agent.destination = animator.gameObject.transform.position;
+                animator.Play("Throwing");
+            }
         }
-        if (Vector3.Distance(animator.gameObject.transform.position, Player.transform.position) <HearingDistance)
-        {
-            agent.destination = animator.gameObject.transform.position;
-            animator.Play("Throwing");
-        }
-            
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

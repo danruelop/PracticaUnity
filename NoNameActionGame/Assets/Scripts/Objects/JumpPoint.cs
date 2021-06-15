@@ -14,10 +14,15 @@ public class JumpPoint : TriggerObject
     }
     public override void OnTriggerWithPlayer(Entity _entity)
     {
+        
         if(_entity != null)
         {
-            m_entity = _entity;
-            m_entity.Boing(m_boingStrength, false);
+            if(_entity.tag == "Player")
+            {
+                Debug.Log(_entity.name);
+                m_entity = _entity;
+                m_entity.Boing(m_boingStrength, false);
+            }
         } 
         else
         {
