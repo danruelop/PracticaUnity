@@ -35,7 +35,6 @@ public class Entity : MonoBehaviour
     }
     void Start()
     {
-        m_rigidbody = gameObject.GetComponent<Rigidbody>();
         m_controller = gameObject.GetComponent<CharacterController>();
     }
 
