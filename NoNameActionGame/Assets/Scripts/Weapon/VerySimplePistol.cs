@@ -97,7 +97,7 @@ public class VerySimplePistol : MonoBehaviour
 			}
 			MusicManager.Instance.PlaySound(AppSounds.FIRE_SFX);
 			// Update canvas 
-			m_canvasRef.GetComponent<MenuCanvasController>().UpdateAmmo(m_ammo);
+			m_canvasRef.GetComponent<MenuCanvasController>().UpdateAmmo(m_ammo-1);
 			GetComponent<AudioSource>().PlayOneShot(m_fireSound);
 			m_ammo--;
 			m_shootTimer = 0.0f;
