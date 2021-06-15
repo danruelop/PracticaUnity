@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyTrigger : TriggerObject
 {
-    public override void OnTriggerWithPlayer(Player player)
+    public override void OnTriggerWithPlayer(Entity _entity)
     {
         
     }
