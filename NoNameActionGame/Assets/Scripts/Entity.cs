@@ -15,7 +15,18 @@ public class Entity : MonoBehaviour
     private float m_isGroundedTimer;
     public float m_gravity = 9.81f;
 
-
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other != null)
+        {
+            other.GetComponent<JumpPoint>().OnTriggerWithPlayer(this);
+        }
+        else
+        {
+            Debug.Log("Collider is null");
+        }
+       
+    }
 
     void Awake()
     {
@@ -60,12 +71,12 @@ public class Entity : MonoBehaviour
 
     public void Boing(float _boingStrength, bool _isSelfJump)
     {
+        Debug.Log("JUMP");
         if(_isSelfJump)
         {
             if(m_isGroundedTimer > 0)
             {
                 m_isGroundedTimer = 0;
-
                 m_verticalVelocity += Mathf.Sqrt(_boingStrength * 2 * m_gravity);
             }
         }

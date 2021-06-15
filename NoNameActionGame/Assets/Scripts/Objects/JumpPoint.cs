@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class JumpPoint : TriggerObject
 {
-
     private Entity m_entity;
     public float m_boingStrength;
 
@@ -13,9 +12,18 @@ public class JumpPoint : TriggerObject
     {
         
     }
-    public override void OnTriggerWithPlayer(Entity m_entity)
+    public override void OnTriggerWithPlayer(Entity _entity)
     {
-        m_entity.Boing(m_boingStrength, false);
+        if(_entity != null)
+        {
+            m_entity = _entity;
+            m_entity.Boing(m_boingStrength, false);
+        } 
+        else
+        {
+            Debug.Log("Triggered entity is null");
+        }
+        
     }
     // Update is called once per frame
     void Update()
