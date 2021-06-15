@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Entity
 {
-    public float m_health;
+    
     public float m_stamina;
     
     public void OnTriggerEnter(Collider other)

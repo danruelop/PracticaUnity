@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class FPSCharacterController : MonoBehaviour
 {
+    private HealthComponent m_healthComponent; 
 
     [Header("Player variables")]
     private float m_verticalVelocity;
@@ -28,6 +29,7 @@ public class FPSCharacterController : MonoBehaviour
 
     private void Start()
     {
+        m_healthComponent = gameObject.GetComponent<HealthComponent>();
         /*TEST Third Person Camera*/
         m_rotation.y = transform.eulerAngles.y;
 
@@ -106,6 +108,8 @@ public class FPSCharacterController : MonoBehaviour
     void PlayerReload()
     {
         VerySimplePistol weapon_Script = m_weapon.GetComponent<VerySimplePistol>();
+        /*TEST*/
+        m_healthComponent.ApplyDamage(weapon_Script.m_damage);
         weapon_Script.Reload();
     }
 
