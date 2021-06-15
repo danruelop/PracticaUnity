@@ -34,18 +34,6 @@ public class HealthComponent : MonoBehaviour
 
     void Die()
     {
-        if (m_owner.GetComponent<Animator>())
-        {
-            m_owner.GetComponent<Animator>().Play("Death");
-        }
-        else if(m_owner.GetComponent<DoSomething>())
-        {
-            Destroy(this.gameObject);
-            //die
-        }
-        else
-        {
-            //die
-        }
+        m_owner.GetComponent<Animator>().Play("Death");
     }
 }
