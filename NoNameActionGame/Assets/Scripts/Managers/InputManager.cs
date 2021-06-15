@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    /*OnStart delegates with parameters*/
-    public delegate void OnStartWP(float _x, float _y); 
-    public event OnStartWP OnPlayerMovement;
-    public event OnStartWP OnPlayerCameraRotate;
-
-    /*OnStart delegates*/
     public delegate void OnStart();
+    public event OnStart OnPlayerMovement;
     public event OnStart OnPlayerJump;
     public event OnStart OnPlayerFire;
     public event OnStart OnPlayerReload;
-    
+    public event OnStart OnPlayerCameraRotate;
 
     public static InputManager Instance
     {
@@ -39,13 +34,13 @@ public class InputManager : MonoBehaviour
         if(Input.GetAxis("Horizontal") != 0.0f || 
             Input.GetAxis("Vertical") != 0.0f)
         {
-            OnPlayerMovement(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            OnPlayerMovement();
         }
 
         if(Input.GetAxis("Mouse X") != 0.0f ||
             Input.GetAxis("Mouse Y") != 0.0f)
         {
-            OnPlayerCameraRotate(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+            OnPlayerCameraRotate();
         }
 
         if(Input.GetButtonDown("Jump"))
@@ -57,7 +52,7 @@ public class InputManager : MonoBehaviour
         {
             OnPlayerFire();
         } 
-        else if(Input.GetKeyDown(KeyCode.R))
+        else if(Input.GetKey(KeyCode.R))
         {
             OnPlayerReload();
         }

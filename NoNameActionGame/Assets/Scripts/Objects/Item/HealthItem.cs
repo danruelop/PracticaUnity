@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class HealthItem : Item
 {
-    //public int m_health;
+    public int m_health;
 
-    //public override void OnTriggerWithPlayer   (Player player)
-    //{
-    //    base.OnTriggerWithPlayer(player);
+    public override void OnTriggerWithPlayer   (Player player)
+    {
+        base.OnTriggerWithPlayer(player);
 
-    //    player.AddHealth(m_health);
-    //}
+        player.AddHealth(m_health);
+    }
 
-    //public override void ExecuteAction ()
-    //{
-    //    base.ExecuteAction();
-    //}
+    public override void ExecuteAction ()
+    {
+        base.ExecuteAction();
+    }
 
-    //public override void ExitAction    ()
-    //{
-    //    base.ExitAction();
+    public override void ExitAction    ()
+    {
+        base.ExitAction();
         
-    //}
+    }
 }
