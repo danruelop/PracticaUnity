@@ -13,11 +13,11 @@ public class Item : TriggerObject
     private   float        m_counterTime = 0;
     private   bool         m_enterActionDone = false;
 
-    protected   Player     m_player;
+    protected   Entity     m_entity;
 
-    public override void OnTriggerWithPlayer   (Player player)
+    public override void OnTriggerWithPlayer   (Entity _entity)
     {
-        m_player = player;
+        m_entity = _entity;
 
         if (m_sfx != null)
         {

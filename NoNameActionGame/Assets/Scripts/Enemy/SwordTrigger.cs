@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class SwordTrigger  : TriggerObject
 {
-    public int damage;
-
-    public override void OnTriggerWithPlayer(Player player)
+    public override void OnTriggerWithPlayer(Entity _entity)
     {
-        player.AddHealth(-damage);
+        throw new System.NotImplementedException();
     }
+    //public int damage;
+
+    //public override void OnTriggerWithPlayer(Player player)
+    //{
+    //    player.AddHealth(-damage);
+    //}
 
     public void EnableCollider (bool enable)
     {
-        GetComponent<BoxCollider>().enabled = enable;
+       GetComponent<BoxCollider>().enabled = enable;
     }
 }
 
