@@ -7,9 +7,12 @@ public class Entity : MonoBehaviour
     public float m_maxHealth;
     public float m_health;
 
-    void Start()
+    void Awake()
     {
         m_health = m_maxHealth;
+    }
+    void Start()
+    {
     }
 
     // Update is called once per frame
