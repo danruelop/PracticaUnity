@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class FPSCharacterController : MonoBehaviour
 {
+    private HealthComponent m_healthComponent; 
 
     [Header("Player variables")]
     private float m_verticalVelocity;
@@ -28,6 +29,7 @@ public class FPSCharacterController : MonoBehaviour
 
     private void Start()
     {
+        m_healthComponent = gameObject.GetComponent<HealthComponent>();
         /*TEST Third Person Camera*/
         m_rotation.y = transform.eulerAngles.y;
 

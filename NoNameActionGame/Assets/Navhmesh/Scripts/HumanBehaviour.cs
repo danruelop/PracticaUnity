@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class HumanBehaviour : MonoBehaviour
+public class HumanBehaviour : Entity
 {
     public Transform[] points;
     private int destPoint = 0;

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -73,7 +73,15 @@ public class VerySimplePistol : MonoBehaviour
 				ParticleSystem t_partycleSystem=Instantiate(m_partycleSystem,hit.point,Quaternion.identity);
 				t_partycleSystem.Play();
 				Destroy(t_partycleSystem.gameObject,0.5f);
+
+				Entity outE;
+
+				if(hit.transform.gameObject.TryGetComponent<Entity>(out outE))
+                {
+					hit.transform.gameObject.GetComponent<HealthComponent>().ApplyDamage(m_damage);
+                }
 				
+			
 				/*
 				Debug.Log("Hit " + hit.transform.name);
 				if (hit.rigidbody)

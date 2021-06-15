@@ -57,7 +57,7 @@ public class InputManager : MonoBehaviour
         {
             OnPlayerFire();
         } 
-        else if(Input.GetKey(KeyCode.R))
+        else if(Input.GetKeyDown(KeyCode.R))
         {
             OnPlayerReload();
         }
