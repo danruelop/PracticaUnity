@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:NoNameActionGame/Assets/Models/Materials.meta
+guid: e0c3aa387e82d83428cff3221376cb3c
+=======
 guid: 1e14e70c98267334386445e7f9efd217
+>>>>>>> 748c020c44b8ad941a823cc3f48238c7c8d3f662:NoNameActionGame/Assets/Scripts/Components.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
