@@ -9,11 +9,6 @@ public class Player : Entity
     public Transform m_initial;
     public GameObject VisualPlayer;
 
-    public void OnTriggerEnter(Collider other)
-    {
-
-    }
-
     public void SetInvencibility(bool enabled)
     {
 
