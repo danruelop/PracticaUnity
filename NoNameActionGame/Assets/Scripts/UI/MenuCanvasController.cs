@@ -13,6 +13,8 @@ public class MenuCanvasController : MonoBehaviour
     public Slider m_musicSlider;
     public Slider m_sfxSlider;
     public Text m_ammo;
+    public Text m_scoreText;
+    public int m_score = 0;
 
     public bool isPaused;
 
@@ -106,5 +108,9 @@ public class MenuCanvasController : MonoBehaviour
     {
         m_ammo.text = _ammo.ToString();
     }
-
+    public void UpdateScore(int _score)
+    {
+        m_score += _score;
+        m_scoreText.text = m_score.ToString();
+    }
 }

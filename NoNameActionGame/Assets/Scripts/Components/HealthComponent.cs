@@ -34,6 +34,16 @@ public class HealthComponent : MonoBehaviour
 
     void Die()
     {
-        m_owner.GetComponent<Animator>().Play("Death");
+        if(m_owner.tag == "Enemy")
+        {
+            m_owner.GetComponent<Animator>().Play("Death");
+            m_owner.m_canvas.GetComponent<MenuCanvasController>().UpdateScore(5);
+        } 
+        else
+        {
+            m_owner.m_canvas.GetComponent<MenuCanvasController>().UpdateScore(1);
+            Destroy(m_owner.gameObject);
+        }
+        
     }
 }

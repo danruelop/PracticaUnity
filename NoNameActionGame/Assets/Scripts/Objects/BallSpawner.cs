@@ -7,7 +7,7 @@ public class BallSpawner : MonoBehaviour
     private float m_spawnMaxCooldown = 3.0f;
     private float m_spawnActualCooldown;
 
-    public float m_spawnForce = 5.0f;
+    public float m_spawnForce = 2.0f;
     public GameObject m_ball;
     public Transform m_pointOfSpawn;
 

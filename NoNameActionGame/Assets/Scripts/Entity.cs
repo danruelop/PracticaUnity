@@ -6,6 +6,7 @@ public class Entity : MonoBehaviour
 {
     public float m_maxHealth;
     public float m_health;
+    public Canvas m_canvas;
 
     protected CharacterController m_controller;
 
@@ -43,7 +44,7 @@ public class Entity : MonoBehaviour
         {
             m_controller = gameObject.GetComponent<CharacterController>();
         }
-        
+        m_canvas = Object.FindObjectOfType<Canvas>(); 
     }
 
     // Update is called once per frame
