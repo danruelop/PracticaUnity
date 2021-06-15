@@ -9,6 +9,7 @@ public class MenuCanvasController : MonoBehaviour
     public GameObject m_mainMenu;
     public GameObject m_options;
     public GameObject m_paused;
+    public GameObject m_deathMenu;
     public Slider m_musicSlider;
     public Slider m_sfxSlider;
     public Text m_ammo;
@@ -37,7 +38,7 @@ public class MenuCanvasController : MonoBehaviour
             m_paused.SetActive(false);
             Time.timeScale = 1;
             isPaused = false;
-            player.GetComponent<FPSCharacterController>().enabled = true;
+           
             /*Locks Cursor*/
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -47,16 +48,19 @@ public class MenuCanvasController : MonoBehaviour
             m_paused.SetActive(true);
             Time.timeScale = 0;
             isPaused = true;
-            player.GetComponent<FPSCharacterController>().enabled = false;
-            /*Locks Cursor*/
+            /*Enables Cursor*/
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
     }
 
-    public void OnUnpause()
+
+    public void OnDeath()
     {
-        m_paused.SetActive(false);
+        m_deathMenu.SetActive(true);
+        /*Enables Cursor*/
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void OnStartLevel()
@@ -66,8 +70,8 @@ public class MenuCanvasController : MonoBehaviour
 
     public void OnMainMenu()
     {
+        MusicManager.Instance.StopBackgroundMusic();
         SceneManager.LoadScene(AppScenes.MAIN_SCENE);
-        MusicManager.Instance.PlaySound(AppSounds.BUTTON_SFX);
     }
 
 
@@ -82,12 +86,10 @@ public class MenuCanvasController : MonoBehaviour
             MusicManager.Instance.MusicVolumeSave = m_musicSlider.value;
             MusicManager.Instance.SfxVolumeSave = m_sfxSlider.value;
         }
-        MusicManager.Instance.PlaySound(AppSounds.BUTTON_SFX);
     }
     public void OnExit()
     {
         Application.Quit();
-        MusicManager.Instance.PlaySound(AppSounds.BUTTON_SFX);
     }
 
     public void OnMusicValueChanged()
