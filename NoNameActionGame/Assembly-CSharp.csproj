@@ -57,10 +57,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AnimationEvents.cs" />
     <Compile Include="Assets\AshGonnaDeath.cs" />
     <Compile Include="Assets\AshGonnaPatrol.cs" />
     <Compile Include="Assets\AshThrowYouAPokeBall.cs" />
     <Compile Include="Assets\DataPoints.cs" />
+    <Compile Include="Assets\DoSomething.cs" />
     <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Demo_Scene_Components\Scripts\DebrisScript.cs" />
     <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Demo_Scene_Components\Scripts\ExplosiveBarrelScript.cs" />
     <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Demo_Scene_Components\Scripts\TargetScript.cs" />
