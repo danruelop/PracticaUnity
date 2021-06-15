@@ -17,8 +17,11 @@ public class VerySimplePistol : MonoBehaviour
 	public  Texture2D m_crosshairTexture;					
     public  AudioClip m_fireSound;
 	public AudioClip m_reloadSound;
+	public ParticleSystem m_partycleSystem;
     //private bool      m_canShot = true;
 	private Animator  m_animator;
+	private int iidle=0;
+	
 
 
 	private void Start()
@@ -46,9 +49,16 @@ public class VerySimplePistol : MonoBehaviour
 
 	public void Shot()
 	{
-		if(m_ammo > 0 && m_shootTimer >= m_timeBetweenShots)
+		if (m_ammo > 0 && m_shootTimer >= m_timeBetweenShots-0.05)
+        {
+			m_animator.Play("Idle");
+		}
+		if (m_ammo > 0 && m_shootTimer >= m_timeBetweenShots)
         {
 			m_animator.Play("Fire");
+			m_partycleSystem.Play();
+			
+			
 
 			Ray ray = new Ray(m_raycastSpot.position, m_raycastSpot.forward);
 
@@ -56,18 +66,24 @@ public class VerySimplePistol : MonoBehaviour
 
 			if (Physics.Raycast(ray, out hit, m_weaponRange))
 			{
+				ParticleSystem t_partycleSystem=Instantiate(m_partycleSystem,hit.point,Quaternion.identity);
+				t_partycleSystem.Play();
+				Destroy(t_partycleSystem.gameObject,0.5f);
+				/*
 				Debug.Log("Hit " + hit.transform.name);
 				if (hit.rigidbody)
 				{
 					hit.rigidbody.AddForce(ray.direction * m_forceToApply);
 					Debug.Log("Hit");
 				}
+				*/
 			}
 
 			GetComponent<AudioSource>().PlayOneShot(m_fireSound);
 			m_ammo--;
 			m_shootTimer = 0.0f;
 		}
+
 		
 	}
 
