@@ -34,6 +34,6 @@ public class HealthComponent : MonoBehaviour
 
     void Die()
     {
-        Destroy(m_owner.gameObject);
+        m_owner.GetComponent<Animator>().Play("Death");
     }
 }

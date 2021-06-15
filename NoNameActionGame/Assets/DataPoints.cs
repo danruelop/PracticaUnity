@@ -6,6 +6,7 @@ public class DataPoints : MonoBehaviour
 {
     // Start is called before the first frame update
     public Transform[] Points;
+    public GameObject Player;
     void Start()
     {
         

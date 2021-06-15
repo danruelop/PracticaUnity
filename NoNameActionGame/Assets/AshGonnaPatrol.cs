@@ -6,12 +6,15 @@ using UnityEngine.AI;
 public class AshGonnaPatrol : StateMachineBehaviour
 {
     private Transform[] points;
+    private GameObject Player;
     private int destPoint = 0;
+    public float HearingDistance=50;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         
         DataPoints data = animator.gameObject.GetComponent<DataPoints>();
+        Player = data.Player;
         points = data.Points;
         
     }
@@ -27,7 +30,12 @@ public class AshGonnaPatrol : StateMachineBehaviour
         {
             agent.destination = points[destPoint].position;
             destPoint = (destPoint + 1) % points.Length;
-            animator.SetTrigger("Walking");
+            animator.Play("walking");
+        }
+        if (Vector3.Distance(animator.gameObject.transform.position, Player.transform.position) <HearingDistance)
+        {
+            agent.destination = animator.gameObject.transform.position;
+            animator.Play("Throwing");
         }
             
     }
