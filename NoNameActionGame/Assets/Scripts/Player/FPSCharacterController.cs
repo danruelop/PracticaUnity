@@ -108,8 +108,6 @@ public class FPSCharacterController : MonoBehaviour
     void PlayerReload()
     {
         VerySimplePistol weapon_Script = m_weapon.GetComponent<VerySimplePistol>();
-        /*TEST*/
-        m_healthComponent.ApplyDamage(weapon_Script.m_damage);
         weapon_Script.Reload();
     }
 
