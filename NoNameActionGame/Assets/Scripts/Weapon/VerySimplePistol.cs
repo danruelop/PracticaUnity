@@ -26,11 +26,15 @@ public class VerySimplePistol : MonoBehaviour
 	[Header("References")]
 	public Transform m_raycastSpot;
 	public Camera m_cameraRef;
+	public Canvas m_canvasRef;
 
 	private void Start()
     {
 		m_animator = gameObject.GetComponent<Animator>();
-    }
+		// Update canvas to max ammo
+		m_canvasRef.GetComponent<MenuCanvasController>().UpdateAmmo(m_maxAmmo);
+		MusicManager.Instance.PlayBackgroundMusic(AppSounds.MAIN_TITLE_MUSIC);
+	}
 
 	private void Update()
 	{
@@ -91,10 +95,13 @@ public class VerySimplePistol : MonoBehaviour
 				}
 				*/
 			}
-
+			MusicManager.Instance.PlaySound(AppSounds.FIRE_SFX);
+			// Update canvas 
+			m_canvasRef.GetComponent<MenuCanvasController>().UpdateAmmo(m_ammo);
 			GetComponent<AudioSource>().PlayOneShot(m_fireSound);
 			m_ammo--;
 			m_shootTimer = 0.0f;
+
 		}
 
 		
@@ -106,7 +113,9 @@ public class VerySimplePistol : MonoBehaviour
         {
 			m_animator.Play("Reload");
 			m_ammo = m_maxAmmo;
-			GetComponent<AudioSource>().PlayOneShot(m_reloadSound);
+			// Update ammo in canvas
+			m_canvasRef.GetComponent<MenuCanvasController>().UpdateAmmo(m_ammo);
+			MusicManager.Instance.PlaySound(AppSounds.RELOAD_SFX);
 		}
 	}
 
