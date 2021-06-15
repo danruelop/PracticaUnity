@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class TriggerObject : MonoBehaviour
 {
-    public abstract void OnTriggerWithPlayer(Player player);
+    public abstract void OnTriggerWithPlayer(Entity _entity);
 }

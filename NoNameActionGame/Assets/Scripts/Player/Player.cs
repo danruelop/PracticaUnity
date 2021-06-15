@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,10 +15,7 @@ public class Player : Entity
         
     }
 
-    public void SetInvencibility (bool enabled)
-    {
-
-    }
+    
 
     public void AddHealth (int health)
     {

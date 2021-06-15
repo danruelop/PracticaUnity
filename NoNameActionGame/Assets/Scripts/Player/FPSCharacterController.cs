@@ -6,14 +6,12 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class FPSCharacterController : MonoBehaviour
 {
-    private HealthComponent m_healthComponent; 
+    private HealthComponent m_healthComponent;
+    private Player m_owner;
 
     [Header("Player variables")]
-    private float m_verticalVelocity;
-    private float m_isGroundedTimer;
     public float m_walkSpeed = 2.0f;
     public float m_jumpHeight = 1.0f;
-    public float m_gravity = 9.81f;
 
     [Header("Camera")]
     public float m_playerCameraRotationSpeed = 4.0f;
@@ -29,6 +27,7 @@ public class FPSCharacterController : MonoBehaviour
 
     private void Start()
     {
+        m_owner = gameObject.GetComponent<Player>();
         m_healthComponent = gameObject.GetComponent<HealthComponent>();
         /*TEST Third Person Camera*/
         m_rotation.y = transform.eulerAngles.y;
@@ -48,27 +47,6 @@ public class FPSCharacterController : MonoBehaviour
     void Update()
     {
         
-        bool groundedPlayer = m_controller.isGrounded;
-        if (groundedPlayer)
-        {
-            m_isGroundedTimer = 0.2f;
-        }
-
-        if (m_isGroundedTimer > 0)
-        {
-            m_isGroundedTimer -= Time.deltaTime;
-        }
-
-        if (groundedPlayer && m_verticalVelocity < 0)
-        {
-            m_verticalVelocity = 0f;
-        }
-
-        m_verticalVelocity -= m_gravity * Time.deltaTime;
-
-        Vector3 tempMove = Vector3.zero;
-        tempMove.y = m_verticalVelocity;
-        m_controller.Move(tempMove * Time.deltaTime);
     }
 
     void PlayerMovement(float _x, float _y)
@@ -91,12 +69,7 @@ public class FPSCharacterController : MonoBehaviour
 
     void PlayerJump()
     {
-        if (m_isGroundedTimer > 0)
-        {
-            m_isGroundedTimer = 0;
-
-            m_verticalVelocity += Mathf.Sqrt(m_jumpHeight * 2 * m_gravity);
-        }
+        m_owner.Boing(m_jumpHeight, true);
     }
     
     void PlayerFire()
